@@ -2,6 +2,7 @@ package br.com.devvnc.todolist.filter;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import br.com.devvnc.todolist.users.IUserRepository;
+import ch.qos.logback.core.net.SyslogOutputStream;
 import jakarta.servlet.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,7 +30,8 @@ public class FilterTaskAuth extends OncePerRequestFilter {
             /** Getting just the auth in Base64
              * without the word 'Basic'
              * */
-            auth.substring("Basic".length()).trim();
+            auth = auth.substring("Basic".length()).trim();
+            System.out.println(auth);
 
             byte [] authDecode = Base64.getDecoder().decode(auth);
             var authString = new String(authDecode);

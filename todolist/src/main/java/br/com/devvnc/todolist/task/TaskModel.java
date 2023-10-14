@@ -29,5 +29,15 @@ public class TaskModel {
     @CreationTimestamp
     private  LocalDateTime createdAt;
 
+    /**E importante passar o 'throws Exception' para passar
+     * a Excessao criada para a camada superior
+     * */
+    public void setTitle(String title) throws Exception{
+        if(title.length() > 50){
+            throw new Exception("Maximium of chars. in title field is 50.");
+        }
+        this.title = title;
+    }
+
 
 }
